@@ -27,13 +27,37 @@
         color: white;
         cursor: pointer;
       }
+      input:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
       a {
+        opacity: 0;
         background-color: brown;
         color: white;
         text-decoration: none;
         padding: 10px;
         border-radius: 10px;
+        transition: all 0.3s;
       }
+      .show-login{
+        opacity: 1;
+      }
+      p{
+        color: white;
+        padding: 3px;
+        border-radius: 5px;
+        opacity: 0;
+        transition: all 0.3s;
+      }
+      .show-accepted-message{
+        background-color: green;
+        opacity: 1;
+      }
+.show-failed-message{
+    background-color: red;
+    opacity: 1;
+}
     </style>
   </head>
   <body>
@@ -52,8 +76,12 @@
         cols="20"
         rows="10"
       ></textarea>
-      <input type="submit" value="Sign Up" />
+      <input type="submit"  value="Sign Up" />
     </form>
-    <a href="./login.html">login</a>
+    <p class="message"></p>
+    <a class="login" href="./login.html">login</a>
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
   </body>
 </html>
