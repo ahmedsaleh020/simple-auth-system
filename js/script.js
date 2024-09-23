@@ -1,4 +1,4 @@
-import hash from "./hash.js";
+import {hash,userCreator} from "./functions.js";
 const email = document.querySelector("#email");
 const password = document.querySelector("#pass");
 const submitBtn = document.querySelector("input[type=submit]");
@@ -106,12 +106,3 @@ function resetFeedBack() {
   }, 2000);
 }
 
-function userCreator(fName, lName, email, pass, describtion) {
-  return {
-    firstName: fName,
-    lastName: lName,
-    email: email,
-    password: pass,
-    about: describtion,
-  };
-}

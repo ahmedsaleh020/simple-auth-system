@@ -1,15 +1,14 @@
-import hash from "./hash.js";
+import { hash, userCreator } from "./functions.js";
 const loginBtn = document.querySelector(".login-btn");
 const email = document.querySelector("#email");
 const password = document.querySelector("#pass");
 const message = document.querySelector(".message");
-let accounts;
+let accounts, user;
 // get the users
 // after click login
-// if empty fields alert complete
+// if empty fields alert complete all fields
 // else
-// hash the email and search for that object using find method
-// then compare the 2 passwords
+// hash the email and password user used in login and search for that object using find method
 // save the object in local storage
 // if okay go to account page
 // render data from storage
@@ -36,20 +35,35 @@ loginBtn.addEventListener("click", function (e) {
   if (email.value == "" || password.value == "") {
     alert("complete your data please");
   } else {
-    let user = accounts.find(
+    user = accounts.find(
       (acc) =>
         acc.email == hash(email.value) && acc.password == hash(password.value)
     );
     if (user) {
-      // save user data to local storage
-      localStorage.setItem("user-data", JSON.stringify(user));
+      //save user email and password without hashing and the rest of data
+      let userData = {
+        ...userCreator(
+          user.firstName,
+          user.lastName,
+          user.email,
+          user.password,
+          user.about
+        ),
+        email: email.value,
+        password: password.value,
+      };
+      // save user data to local storage to accesst them in account page
+      localStorage.setItem("user-data", JSON.stringify(userData));
       // take user to my account page
       window.location.href = "/account.html";
     } else {
       email.value = "";
       password.value = "";
-      message.innerText = "Wrong password or Email";
+      message.innerText = "Wrong password or Email, Try Again!";
       message.classList.add("show-failed-message");
+      setTimeout(() => {
+        message.classList.remove("show-failed-message");
+      }, 2000);
     }
   }
 });
