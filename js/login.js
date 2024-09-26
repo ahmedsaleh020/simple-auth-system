@@ -37,20 +37,20 @@ loginBtn.addEventListener("click", function (e) {
   } else {
     user = accounts.find(
       (acc) =>
-        acc.email == hash(email.value) && acc.password == hash(password.value)
+        acc["Email"] == hash(email.value) && acc["Password"] == hash(password.value)
     );
     if (user) {
       //save user email and password without hashing and the rest of data
       let userData = {
         ...userCreator(
-          user.firstName,
-          user.lastName,
-          user.email,
-          user.password,
-          user.about
+          user["First Name"],
+          user["Last Name"],
+          user["Email"],
+          user["Password"],
+          user["Bio"]
         ),
-        email: email.value,
-        password: password.value,
+        "Email": email.value,
+        "Password": password.value,
       };
       // save user data to local storage to accesst them in account page
       localStorage.setItem("user-data", JSON.stringify(userData));

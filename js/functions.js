@@ -3,11 +3,11 @@ export  function hash(data) {
   }
   export  function userCreator(fName, lName, email, pass, describtion) {
     return {
-      firstName: fName,
-      lastName: lName,
-      email: email,
-      password: pass,
-      about: describtion,
+      "First Name": fName,
+      "Last Name": lName,
+      "Email": email,
+      "Password": pass,
+      "Bio": describtion,
     };
   }
   
